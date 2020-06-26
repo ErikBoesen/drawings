@@ -7,14 +7,13 @@ ctx.lineWidth = 1;
 let ops = {
     padding: 10,
     size: 800,
-    strokeCount: 30,
-    strokeSpacing: 20
+    strokeCount: 25,
+    strokeSpacing: 15
 }
 
 function resize() {
     canvas.width = ops.size + (2 * ops.padding);
     canvas.height = ops.size + (2 * ops.padding);
-    console.log("Resizing: ", canvas.width, canvas.height);
 }
 
 function line(xa, ya, xb, yb) {
@@ -76,9 +75,20 @@ function draw() {
 
 }
 
+function updateLabel(input) {
+    input.nextElementSibling.textContent = input.name + ' (' + input.value + ')';
+}
+
+for (let op in ops) {
+    let input = document.getElementById(op);
+    input.value = ops[op];
+    updateLabel(input);
+}
+
 draw();
 
 oninput = function(e) {
     ops[e.target.id] = parseInt(e.target.value);
+    updateLabel(e.target);
     draw();
 }
