@@ -39,27 +39,23 @@ function draw() {
 
     // Top left
     for (let i = 1; i <= ops.strokeCount; i++) {
-        ctx.moveTo(0, i * ops.strokeSpacing);
-        ctx.lineTo((ops.strokeCount - i) * ops.strokeSpacing, 0);
-        ctx.stroke();
+        line(0, i * ops.strokeSpacing,
+             (ops.strokeCount - i) * ops.strokeSpacing, 0);
     }
     // Top right
     for (let i = 1; i <= ops.strokeCount; i++) {
-        ctx.moveTo(ops.size, i * ops.strokeSpacing);
-        ctx.lineTo(ops.size - ((ops.strokeCount - i) * ops.strokeSpacing), 0);
-        ctx.stroke();
+        line(ops.size, i * ops.strokeSpacing,
+             ops.size - ((ops.strokeCount - i) * ops.strokeSpacing), 0);
     }
     // Bottom left
     for (let i = 1; i <= ops.strokeCount; i++) {
-        ctx.moveTo(0, ops.size - (i * ops.strokeSpacing));
-        ctx.lineTo((ops.strokeCount - i) * ops.strokeSpacing, ops.size);
-        ctx.stroke();
+        line(0, ops.size - (i * ops.strokeSpacing),
+             (ops.strokeCount - i) * ops.strokeSpacing, ops.size);
     }
     // Bottom right
     for (let i = 1; i <= ops.strokeCount; i++) {
-        ctx.moveTo(ops.size, ops.size - (i * ops.strokeSpacing));
-        ctx.lineTo(ops.size - ((ops.strokeCount - i) * ops.strokeSpacing), ops.size);
-        ctx.stroke();
+        line(ops.size, ops.size - (i * ops.strokeSpacing),
+             ops.size - ((ops.strokeCount - i) * ops.strokeSpacing), ops.size);
     }
 }
 
