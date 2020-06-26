@@ -6,12 +6,19 @@
 html, body { height: 100%; }
 body {
     background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 }
 
-form, canvas {
+div, canvas {
     display: block;
     margin: 0 auto;
 }
+input, label {
+    display: inline;
+}
 label {
-    display: block;
+    clear: right;
 }
