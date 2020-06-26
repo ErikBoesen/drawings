@@ -14,17 +14,28 @@ let ops = {
 
 canvas.width = canvas.height = ops.size + (2 * ops.padding);
 
+function line(xa, ya, xb, yb) {
+    ctx.moveTo(ops.padding + xa, ops.padding + ya);
+    ctx.lineTo(ops.padding + xb, ops.padding + yb);
+    ctx.stroke();
+}
+
+function shape(points) {
+    for (let i = 1; i < points.length; i++) {
+        let a = points[i - 1],
+            b = points[i];
+        line(a[0], a[1], b[0], b[1]);
+    }
+    line(points[points.length - 1][0], points[points.length - 1][1],
+         points[0][0], points[0][1]);
+}
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.beginPath();
 
-    ctx.moveTo(0, 0);
-    ctx.lineTo(ops.size, 0);
-    ctx.lineTo(ops.size, ops.size);
-    ctx.lineTo(0, ops.size);
-    ctx.lineTo(0, 0);
-    ctx.stroke();
+    // Draw square
+    shape([[0, 0], [ops.size, 0], [ops.size, ops.size], [0, ops.size]]);
 
     // Top left
     for (let i = 1; i <= ops.strokeCount; i++) {
