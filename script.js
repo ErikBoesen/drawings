@@ -3,7 +3,6 @@ const ctx = canvas.getContext('2d');
 
 ctx.strokeStyle = 'black';
 ctx.lineWidth = 1;
-currentPath = null;
 
 let ops = {
     padding: 10,
@@ -12,7 +11,11 @@ let ops = {
     strokeSpacing: 20
 }
 
-canvas.width = canvas.height = ops.size + (2 * ops.padding);
+function resize() {
+    canvas.width = ops.size + (2 * ops.padding);
+    canvas.height = ops.size + (2 * ops.padding);
+    console.log("Resizing: ", canvas.width, canvas.height);
+}
 
 function line(xa, ya, xb, yb) {
     ctx.moveTo(ops.padding + xa, ops.padding + ya);
@@ -31,6 +34,7 @@ function shape(points) {
 }
 
 function draw() {
+    resize();
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.beginPath();
 
@@ -57,12 +61,13 @@ function draw() {
         line(ops.size, ops.size - (i * ops.strokeSpacing),
              ops.size - ((ops.strokeCount - i) * ops.strokeSpacing), ops.size);
     }
+
 }
 
 draw();
 
 oninput = function(e) {
-    ops[e.target.id] = e.target.value;
+    ops[e.target.id] = parseInt(e.target.value);
     draw();
 }
 /*
