@@ -5,6 +5,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <form>
+        <label>
+            <input type="range" min="0" max="200" value="10" id="padding">
+            Padding
+        </label>
+        <label>
+            <input type="range" min="100" max="1000" value="500" id="size">
+            Size
+        </label>
+        <label>
+            <input type="range" min="1" max="100" value="30" id="strokeCount">
+            Stroke Count
+        </label>
+        <label>
+            <input type="range" min="1" max="100" value="20" id="strokeSpacing">
+            Stroke Spacing
+        </label>
+    </form>
     <canvas id="canv"></canvas>
     <script src="script.js"></script>
 </body>

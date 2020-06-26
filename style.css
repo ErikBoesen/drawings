@@ -6,7 +6,12 @@
 html, body { height: 100%; }
 body {
     background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: middle;
+}
+
+form, canvas {
+    display: block;
+    margin: 0 auto;
+}
+label {
+    display: block;
 }

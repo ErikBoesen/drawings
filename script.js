@@ -1,9 +1,6 @@
 const canvas = document.getElementsByTagName('canvas')[0];
 const ctx = canvas.getContext('2d');
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
 ctx.strokeStyle = 'black';
 ctx.lineWidth = 1;
 currentPath = null;
@@ -14,6 +11,9 @@ let ops = {
     strokeCount: 30,
     strokeSpacing: 20
 }
+
+canvas.width = canvas.height = ops.size + (2 * ops.padding);
+
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -54,6 +54,10 @@ function draw() {
 
 draw();
 
+oninput = function(e) {
+    ops[e.target.id] = e.target.value;
+    draw();
+}
 /*
 setInterval(function() {
     move();
