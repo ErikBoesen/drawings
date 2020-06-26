@@ -33,6 +33,16 @@ function shape(points) {
          points[0][0], points[0][1]);
 }
 
+/*
+function curve(anchorx, anchory, dirx, diry) {
+    for (let i = 1; i < ops.strokeCount; i++) {
+        line(anchorx, i * ops.strokeSpacing,
+             anchorx +(ops.strokeCount - i) * ops.strokeSpacing, 0);
+        line(anchorx + dirx * , anchory + diry
+    }
+}
+*/
+
 function draw() {
     resize();
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -41,25 +51,27 @@ function draw() {
     // Draw square
     shape([[0, 0], [ops.size, 0], [ops.size, ops.size], [0, ops.size]]);
 
-    // Top left
-    for (let i = 1; i <= ops.strokeCount; i++) {
+    for (let i = 1; i < ops.strokeCount; i++) {
+        // Top left
         line(0, i * ops.strokeSpacing,
              (ops.strokeCount - i) * ops.strokeSpacing, 0);
-    }
-    // Top right
-    for (let i = 1; i <= ops.strokeCount; i++) {
+        line((ops.size / 2), (ops.size / 2) - (i * ops.strokeSpacing),
+             (ops.size / 2) - ((ops.strokeCount - i) * ops.strokeSpacing), (ops.size / 2));
+        // Top right
         line(ops.size, i * ops.strokeSpacing,
              ops.size - ((ops.strokeCount - i) * ops.strokeSpacing), 0);
-    }
-    // Bottom left
-    for (let i = 1; i <= ops.strokeCount; i++) {
+        line((ops.size / 2), (ops.size / 2) - (i * ops.strokeSpacing),
+             (ops.size / 2) + (ops.strokeCount - i) * ops.strokeSpacing, (ops.size / 2));
+        // Bottom left
         line(0, ops.size - (i * ops.strokeSpacing),
              (ops.strokeCount - i) * ops.strokeSpacing, ops.size);
-    }
-    // Bottom right
-    for (let i = 1; i <= ops.strokeCount; i++) {
+        line((ops.size / 2), (ops.size / 2) + i * ops.strokeSpacing,
+             (ops.size / 2) - ((ops.strokeCount - i) * ops.strokeSpacing), (ops.size / 2));
+        // Bottom right
         line(ops.size, ops.size - (i * ops.strokeSpacing),
              ops.size - ((ops.strokeCount - i) * ops.strokeSpacing), ops.size);
+        line((ops.size / 2), (ops.size / 2) + i * ops.strokeSpacing,
+             (ops.size / 2) + (ops.strokeCount - i) * ops.strokeSpacing, (ops.size / 2));
     }
 
 }
@@ -70,9 +82,3 @@ oninput = function(e) {
     ops[e.target.id] = parseInt(e.target.value);
     draw();
 }
-/*
-setInterval(function() {
-    move();
-    draw();
-}, 10);
-*/
